@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Calculator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .calculator {
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+  }
+  .grid{
+     display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+
+    background: black;
+}
+.grid-item {
+  font-size: 30px;
+  text-align: center;
+}
+
+  input[type="button"] {
+    width: 80px;
+    height: 50px;
+    font-size: 18px;
+    color: white;
+    background: black;
+    border: none;
+  }
+  #symbol{
+    background: grey;
+  }
+  input[type="text"] {
+    width: 236px;
+    height: 48px;
+    font-size: 24px;
+    border: none;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+  <div class="calculator">
+    <div style="display: flex;">
+    <input type="text" id="display" readonly>
+    <input type="button" style="background: #009986" value="AC" onclick="clearDisplay()"></div>
+    <div class="grid">
+
+    <input type="button" class=".grid-item" value="7" onclick="appendToDisplay('7')">
+    <input type="button" class=".grid-item" value="8" onclick="appendToDisplay('8')">
+    <input type="button" class=".grid-item" value="9" onclick="appendToDisplay('9')">
+    <input type="button" class=".grid-item" id="symbol" value="+" onclick="appendToDisplay('+')">
+    <input type="button" class=".grid-item" value="4" onclick="appendToDisplay('4')">
+    <input type="button" class=".grid-item" value="5" onclick="appendToDisplay('5')">
+    <input type="button" class=".grid-item" value="6" onclick="appendToDisplay('6')">
+    <input type="button" class=".grid-item" id="symbol" value="-" onclick="appendToDisplay('-')">
+    <input type="button" class=".grid-item" value="1" onclick="appendToDisplay('1')">
+    <input type="button" class=".grid-item" value="2" onclick="appendToDisplay('2')">
+    <input type="button" class=".grid-item" value="3" onclick="appendToDisplay('3')">
+    <input type="button" class=".grid-item" id="symbol" value="÷" onclick="appendToDisplay('/')">
+    <input type="button" class=".grid-item" value="." onclick="appendToDisplay('.')">
+    <input type="button" class=".grid-item" value="0" onclick="appendToDisplay('0')">
+    <input type="button" class=".grid-item" value="=" onclick="calculateResult()">
+    <input type="button" class=".grid-item" id="symbol" value="*" onclick="appendToDisplay('*')">
+  </div>
+  </div>
+
+  <script>
+    function appendToDisplay(value) {
+      document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function calculateResult() {
+      const display = document.getElementById('display');
+      try {
+        display.value = eval(display.value);
+      } catch (error) {
+        display.value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
